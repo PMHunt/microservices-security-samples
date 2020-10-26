@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "d7d3cfdf-3d40-4b2b-b7ee-4bfcd888d2fd",
+		"name": "microservice-security",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fc3a2dca-f0b4-4c26-8c54-c20da26c5e32",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \"items\":[    {      \"itemCode\":\"IT0001\",      \"quantity\":3    },    {      \"itemCode\":\"IT0004\",      \"quantity\":1    }  ],  \"shippingAddress\":\"No 4, Castro Street, Mountain View, CA, USA\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8085/oauth/token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "orderprocessingappsecret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "orderprocessingapp",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"grant_type\": \"client_credentials\", \"scope\": \"read write\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "fc3a2dca-f0b4-4c26-8c54-c20da26c5e32",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \"items\":[    {      \"itemCode\":\"IT0001\",      \"quantity\":3    },    {      \"itemCode\":\"IT0004\",      \"quantity\":1    }  ],  \"shippingAddress\":\"No 4, Castro Street, Mountain View, CA, USA\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders"
+					]
+				},
+				"description": "with bearer token"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/orders/6372905f-ca04-4f67-a316-43619a6b0064",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders/6372905f-ca04-4f67-a316-43619a6b0064",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"6372905f-ca04-4f67-a316-43619a6b0064"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9090/retail/orders/6372905f-ca04-4f67-a316-43619a6b0064",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "08d24472-9e09-416a-a691-7d0712ec5fe4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/retail/orders/ac7e5593-46c6-4449-927b-96869d9fdd2b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"retail",
+						"orders",
+						"ac7e5593-46c6-4449-927b-96869d9fdd2b"
+					]
+				},
+				"description": "via Zuul gateway"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9090/token/oauth/token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "application1secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "application1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"grant_type\": \"client_credentials\", \"scope\": \"read write\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/tokwn/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"tokwn",
+						"oauth",
+						"token"
+					]
+				},
+				"description": "Token request via Zuul"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9090/retail/orders/6372905f-ca04-4f67-a316-43619a6b0064",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "08d24472-9e09-416a-a691-7d0712ec5fe4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/retail/orders/ac7e5593-46c6-4449-927b-96869d9fdd2b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"retail",
+						"orders",
+						"ac7e5593-46c6-4449-927b-96869d9fdd2b"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
